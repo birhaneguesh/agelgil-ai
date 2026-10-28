@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Node
+node_modules/
+dist/
+.vite/
+
+# Secrets, keys, weights — must never be committed
+*.pem
+*.key
+*.gguf
+.env
+.env.*
+secrets/
+
+# Generated artifacts (CA/leaf outputs land here)
+out/
+
+# Runtime data
+data/
+*.sqlite
+*.sqlite-journal
+*.sqlite-wal
+*.sqlite-shm
+
+# OS
+.DS_Store
+Thumbs.db
