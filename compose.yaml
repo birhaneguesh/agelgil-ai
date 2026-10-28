@@ -1,1 +1,51 @@
-services: {}
+name: agelgil
+
+services:
+  nginx:
+    image: ${AGELGIL_FRONTEND_IMAGE:-agelgil-frontend:dev}
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./data/tls:/etc/nginx/tls:ro
+    depends_on:
+      - api
+    restart: unless-stopped
+
+  api:
+    image: ${AGELGIL_BACKEND_IMAGE:-agelgil-backend:dev}
+    environment:
+      AGELGIL_DB_PATH: /var/lib/agelgil/data/agelgil.db
+      AGELGIL_AP_IFACE: ${AGELGIL_AP_IFACE:-lo}
+    volumes:
+      - ${AGELGIL_DATA_DIR:-./data}:/var/lib/agelgil/data
+    depends_on:
+      - writer
+    restart: unless-stopped
+
+  writer:
+    image: ${AGELGIL_BACKEND_IMAGE:-agelgil-backend:dev}
+    command: ["python", "-m", "app.worker"]
+    environment:
+      AGELGIL_DB_PATH: /var/lib/agelgil/data/agelgil.db
+    volumes:
+      - ${AGELGIL_DATA_DIR:-./data}:/var/lib/agelgil/data
+    restart: unless-stopped
+
+  ollama:
+    image: ollama/ollama:0.3.14
+    profiles: ["pi"]
+    environment:
+      OLLAMA_NUM_PARALLEL: "1"
+    volumes:
+      - agelgil-models:/root/.ollama/models
+    restart: unless-stopped
+
+  mock-slm:
+    image: ${AGELGIL_BACKEND_IMAGE:-agelgil-backend:dev}
+    command: ["uvicorn", "app.mocks.slm:app", "--host", "0.0.0.0", "--port", "11434"]
+    profiles: ["dev"]
+    restart: unless-stopped
+
+volumes:
+  agelgil-models:

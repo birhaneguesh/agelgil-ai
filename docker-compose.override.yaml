@@ -1,1 +1,11 @@
-services: {}
+# Laptop parity-check values per AGELGIL-MVP-FINAL §12.4.
+# On the Pi, the deploy script (P5) supplies equivalent values via env vars.
+services:
+  nginx:
+    image: agelgil-frontend:dev
+  api:
+    image: agelgil-backend:dev
+    environment:
+      AGELGIL_AP_IFACE: lo
+  writer:
+    image: agelgil-backend:dev
