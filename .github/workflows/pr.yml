@@ -3,7 +3,16 @@ on:
   pull_request:
     types: [opened, synchronize, reopened]
 jobs:
-  placeholder:
+  checks:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
-      - run: echo "placeholder - implemented in P1.01c"
+      - uses: actions/checkout@v4
+
+      - name: No secrets, keys, or weights tracked
+        run: |
+          if git ls-files | grep -E '\.(pem|key|gguf)$|(^|/)\.env($|\.)'; then
+            echo "FAIL: forbidden files in tree"
+            exit 1
+          fi
+          echo "OK: no forbidden files"

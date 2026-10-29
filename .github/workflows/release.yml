@@ -3,7 +3,31 @@ on:
   push:
     tags: ['v*']
 jobs:
-  placeholder:
-    runs-on: ubuntu-latest
+  build-arm64:
+    runs-on: ubuntu-24.04-arm
+    timeout-minutes: 30
+    permissions:
+      contents: read
     steps:
-      - run: echo "placeholder - implemented in P1.01c"
+      - uses: actions/checkout@v4
+
+      - name: Build backend image
+        run: docker build -t agelgil-backend:${{ github.ref_name }} ./api
+
+      - name: Build frontend image
+        run: docker build -t agelgil-frontend:${{ github.ref_name }} ./frontend
+
+      - name: Save images
+        run: |
+          docker save \
+            agelgil-backend:${{ github.ref_name }} \
+            agelgil-frontend:${{ github.ref_name }} \
+            -o images.tar
+          ls -lh images.tar
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: images-${{ github.ref_name }}
+          path: images.tar
+          retention-days: 90
