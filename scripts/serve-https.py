@@ -3,6 +3,9 @@
 
 Run from repo root with venv active:
     python scripts/serve-https.py
+
+The script locates the repo from __file__ and resolves cert/key paths to
+absolute before any chdir, so it works regardless of cwd.
 """
 import http.server
 import os
