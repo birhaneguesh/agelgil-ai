@@ -53,7 +53,7 @@ jobs:
 
       - name: Smoke test backend (arm64, native)
         run: |
-          docker run --rm -d --name be-smoke -p 18000:8000 "agelgil-backend:${VERSION}"
+          docker run -d --name be-smoke -p 18000:8000 "agelgil-backend:${VERSION}"
           ok=0
           for _ in $(seq 1 30); do
             if curl -fsS http://localhost:18000/healthz | grep -q '"status":"ok"'; then ok=1; break; fi
@@ -61,16 +61,17 @@ jobs:
           done
           if [ "$ok" != "1" ]; then
             echo "FAIL: backend healthz did not return ok"
+            docker ps -a --filter name=be-smoke
             docker logs be-smoke || true
-            docker stop be-smoke >/dev/null 2>&1 || true
+            docker rm -f be-smoke >/dev/null 2>&1 || true
             exit 1
           fi
-          docker stop be-smoke >/dev/null
+          docker rm -f be-smoke >/dev/null
           echo "backend smoke ok"
 
       - name: Smoke test frontend (arm64, native)
         run: |
-          docker run --rm -d --name fe-smoke -p 18080:80 "agelgil-frontend:${VERSION}"
+          docker run -d --name fe-smoke -p 18080:80 "agelgil-frontend:${VERSION}"
           ok=0
           for _ in $(seq 1 30); do
             if curl -fsS http://localhost:18080/ | grep -q 'Agelgil-AI'; then ok=1; break; fi
@@ -78,13 +79,14 @@ jobs:
           done
           if [ "$ok" != "1" ]; then
             echo "FAIL: frontend / did not return 200 with placeholder body"
+            docker ps -a --filter name=fe-smoke
             docker logs fe-smoke || true
-            docker stop fe-smoke >/dev/null 2>&1 || true
+            docker rm -f fe-smoke >/dev/null 2>&1 || true
             exit 1
           fi
           curl -fsS http://localhost:18080/sw.js | grep -q 'Stub SW' \
-            || { echo "FAIL: /sw.js not served"; docker logs fe-smoke || true; docker stop fe-smoke >/dev/null 2>&1 || true; exit 1; }
-          docker stop fe-smoke >/dev/null
+            || { echo "FAIL: /sw.js not served"; docker logs fe-smoke || true; docker rm -f fe-smoke >/dev/null 2>&1 || true; exit 1; }
+          docker rm -f fe-smoke >/dev/null
           echo "frontend smoke ok"
 
       - name: Save images and checksums
