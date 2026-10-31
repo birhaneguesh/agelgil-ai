@@ -1,33 +1,147 @@
 name: release
+
 on:
   push:
     tags: ['v*']
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: 'Tag or branch to build (e.g. v0.0.2 or main)'
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
 jobs:
   build-arm64:
     runs-on: ubuntu-24.04-arm
-    timeout-minutes: 30
-    permissions:
-      contents: read
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref || github.ref }}
+
+      - name: Compute VERSION
+        run: |
+          if [ "${{ github.event_name }}" = "push" ]; then
+            echo "VERSION=${{ github.ref_name }}" >> "$GITHUB_ENV"
+          else
+            echo "VERSION=${{ inputs.ref }}" >> "$GITHUB_ENV"
+          fi
+          echo "SHA=${{ github.sha }}" >> "$GITHUB_ENV"
+
+      - name: Assert ARM64 runner
+        run: |
+          arch="$(uname -m)"
+          echo "runner arch: $arch"
+          [ "$arch" = "aarch64" ] || { echo "FAIL: expected aarch64, got $arch"; exit 1; }
 
       - name: Build backend image
-        run: docker build -t agelgil-backend:${{ github.ref_name }} ./api
+        run: |
+          docker build \
+            -t "agelgil-backend:${VERSION}" \
+            -t "agelgil-backend:sha-${SHA}" \
+            ./api
 
       - name: Build frontend image
-        run: docker build -t agelgil-frontend:${{ github.ref_name }} ./frontend
+        run: |
+          docker build \
+            -t "agelgil-frontend:${VERSION}" \
+            -t "agelgil-frontend:sha-${SHA}" \
+            ./frontend
 
-      - name: Save images
+      - name: Smoke test backend (arm64, native)
+        run: |
+          docker run --rm -d --name be-smoke -p 18000:8000 "agelgil-backend:${VERSION}"
+          ok=0
+          for _ in $(seq 1 30); do
+            if curl -fsS http://localhost:18000/healthz | grep -q '"status":"ok"'; then ok=1; break; fi
+            sleep 1
+          done
+          if [ "$ok" != "1" ]; then
+            echo "FAIL: backend healthz did not return ok"
+            docker logs be-smoke || true
+            docker stop be-smoke >/dev/null 2>&1 || true
+            exit 1
+          fi
+          docker stop be-smoke >/dev/null
+          echo "backend smoke ok"
+
+      - name: Smoke test frontend (arm64, native)
+        run: |
+          docker run --rm -d --name fe-smoke -p 18080:80 "agelgil-frontend:${VERSION}"
+          ok=0
+          for _ in $(seq 1 30); do
+            if curl -fsS http://localhost:18080/ | grep -q 'Agelgil-AI'; then ok=1; break; fi
+            sleep 1
+          done
+          if [ "$ok" != "1" ]; then
+            echo "FAIL: frontend / did not return 200 with placeholder body"
+            docker logs fe-smoke || true
+            docker stop fe-smoke >/dev/null 2>&1 || true
+            exit 1
+          fi
+          curl -fsS http://localhost:18080/sw.js | grep -q 'Stub SW' \
+            || { echo "FAIL: /sw.js not served"; docker logs fe-smoke || true; docker stop fe-smoke >/dev/null 2>&1 || true; exit 1; }
+          docker stop fe-smoke >/dev/null
+          echo "frontend smoke ok"
+
+      - name: Save images and checksums
         run: |
           docker save \
-            agelgil-backend:${{ github.ref_name }} \
-            agelgil-frontend:${{ github.ref_name }} \
+            "agelgil-backend:${VERSION}" \
+            "agelgil-backend:sha-${SHA}" \
+            "agelgil-frontend:${VERSION}" \
+            "agelgil-frontend:sha-${SHA}" \
             -o images.tar
-          ls -lh images.tar
+          sha256sum images.tar > images.sha256
+          ls -lh images.tar images.sha256
+
+      - name: Emit image digests
+        run: |
+          {
+            for img in agelgil-backend agelgil-frontend; do
+              for tag in "${VERSION}" "sha-${SHA}"; do
+                id=$(docker image inspect "${img}:${tag}" --format '{{.Id}}')
+                printf '%s:%s id=%s\n' "$img" "$tag" "$id"
+              done
+            done
+          } > image-digests.txt
+          cat image-digests.txt
+
+      - name: Emit build info
+        run: |
+          sha_of_tar=$(awk '{print $1}' images.sha256)
+          built_at=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+          runner_arch=$(uname -m)
+          runner_name="${RUNNER_NAME:-unknown}"
+          workflow="${GITHUB_WORKFLOW:-release}"
+          repo="${GITHUB_REPOSITORY:-unknown}"
+          trigger="${GITHUB_EVENT_NAME:-unknown}"
+          cat > build-info.json <<JSON
+          {
+            "version": "${VERSION}",
+            "sha": "${SHA}",
+            "built_at": "${built_at}",
+            "runner": "${runner_name}",
+            "runner_arch": "${runner_arch}",
+            "repo": "${repo}",
+            "trigger": "${trigger}",
+            "workflow": "${workflow}",
+            "images_sha256": "${sha_of_tar}"
+          }
+          JSON
+          python3 -c "import json; json.load(open('build-info.json')); print('build-info.json valid')"
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: images-${{ github.ref_name }}
-          path: images.tar
+          name: images-${{ env.VERSION }}
+          path: |
+            images.tar
+            images.sha256
+            image-digests.txt
+            build-info.json
           retention-days: 90
+          if-no-files-found: error
