@@ -1,0 +1,4 @@
+# Dev-only Python packages for scripts/ and tests/.
+# Not installed in the api or writer containers; used by the venv at repo root
+# and by the per-PR CI job in P3.06.
+pyyaml==6.0.2
