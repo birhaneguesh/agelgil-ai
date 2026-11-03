@@ -1,0 +1,547 @@
+# bench/readability/held_out.yaml
+# 60 items, 20 per sim, 4 per misconception_id.
+# Format locked by P2.04. Do not change field names without an amendment.
+# See bench/readability/taxonomy_stub.yaml for the constrained id set.
+
+# ============================ MECHANICS ============================
+- id: mechanics-001
+  misconception_id: mechanics.pendulum.velocity_sign
+  sim: mechanics
+  grade_band: 9-10
+  question_text: A student says the pendulum's velocity must be negative because its position is decreasing. Is this correct?
+  expected_factual_correctness: must distinguish between decreasing position and velocity sign, and state that velocity is negative only when moving toward the equilibrium in the chosen coordinate system
+  expected_readability: uses simple terms, does not introduce derivatives, defines any term beyond grade 9 vocabulary inline
+  expected_uncertainty_framing: contains a phrase advising the student to check the answer against their own simulation
+
+- id: mechanics-002
+  misconception_id: mechanics.freefall.acceleration_independence
+  sim: mechanics
+  grade_band: 9-10
+  question_text: If a heavy ball and a light ball are dropped from the same height in a vacuum, which one hits the ground first?
+  expected_factual_correctness: must state they hit at the same time in a vacuum, and note that in air the answer changes due to air resistance
+  expected_readability: grade 9-10 vocabulary, no more than two sentences, one concrete example if helpful
+  expected_uncertainty_framing: explicitly notes that the answer assumes no air resistance and advises checking against the simulation
+
+- id: mechanics-003
+  misconception_id: mechanics.pendulum.velocity_sign
+  sim: mechanics
+  grade_band: 9-10
+  question_text: A student at the bottom of a pendulum's swing says the velocity must be zero because the pendulum is momentarily at its lowest point. Is that right?
+  expected_factual_correctness: must state that at the bottom of the swing the speed is at its maximum, and only the position is at its minimum, not the velocity magnitude
+  expected_readability: grade 9-10 vocabulary, no more than three sentences, does not introduce calculus or derivative notation
+  expected_uncertainty_framing: notes that the answer assumes friction is ignored, and advises checking the claim against the simulation
+
+- id: mechanics-004
+  misconception_id: mechanics.pendulum.velocity_sign
+  sim: mechanics
+  grade_band: 9-10
+  question_text: A student thinks the velocity and acceleration of a pendulum must always point in the same direction. Are they right?
+  expected_factual_correctness: must state that during most of the swing the velocity points along the path while acceleration points toward the equilibrium position, so the two oppose near the ends
+  expected_readability: grade 9-10 phrasing, uses the word "toward" rather than vector notation, and avoids the word "component"
+  expected_uncertainty_framing: notes the answer depends on the coordinate system chosen, and advises checking against the simulation
+
+- id: mechanics-005
+  misconception_id: mechanics.pendulum.velocity_sign
+  sim: mechanics
+  grade_band: 9-10
+  question_text: A student says the velocity is negative whenever the pendulum is below its rest position. Is that correct?
+  expected_factual_correctness: must state that the sign of velocity depends on the direction of motion, not on whether the pendulum is above or below rest
+  expected_readability: grade 9-10 phrasing, defines "sign" at first use, no more than two sentences
+  expected_uncertainty_framing: notes the answer assumes a specific choice of positive direction, and advises checking against the simulation
+
+- id: mechanics-006
+  misconception_id: mechanics.pendulum.energy_transfer
+  sim: mechanics
+  grade_band: 9-10
+  question_text: A student claims that a pendulum's potential and kinetic energy are two separate supplies that never trade with each other. How would you correct this?
+  expected_factual_correctness: must state that kinetic and potential energy trade back and forth during the swing, and their sum stays approximately constant when friction is ignored
+  expected_readability: grade 9-10 vocabulary, no more than three sentences, explains "trade" with a concrete example, no formulas
+  expected_uncertainty_framing: notes the answer assumes friction is negligible, and advises comparing against the simulation
+
+- id: mechanics-007
+  misconception_id: mechanics.pendulum.energy_transfer
+  sim: mechanics
+  grade_band: 9-10
+  question_text: A student says that when a pendulum stops momentarily at its highest point, both its kinetic and potential energies are zero. What is the flaw in this reasoning?
+  expected_factual_correctness: must state that at the highest point kinetic energy is zero while potential energy is maximal, and the total mechanical energy is not zero
+  expected_readability: grade 9-10 phrasing, no more than three sentences, does not require the student to know the energy formulas
+  expected_uncertainty_framing: notes the answer assumes no energy is lost to friction, and advises checking against the simulation
+
+- id: mechanics-008
+  misconception_id: mechanics.pendulum.energy_transfer
+  sim: mechanics
+  grade_band: 9-10
+  question_text: A student says a pendulum releases energy into the swing and then creates new energy on the way back, as if the two were separate processes. Is this understanding correct?
+  expected_factual_correctness: must state that a single fixed amount of total mechanical energy is redistributed between kinetic and potential forms throughout the swing
+  expected_readability: uses the word "redistribute" with a plain-language gloss, no more than three sentences, no formulas
+  expected_uncertainty_framing: notes that friction slowly removes energy from the swing, and advises checking against the simulation
+
+- id: mechanics-009
+  misconception_id: mechanics.pendulum.energy_transfer
+  sim: mechanics
+  grade_band: 9-10
+  question_text: A student thinks the energy of a pendulum is created when the bob moves and destroyed when it stops at a turning point. What should be said to correct this?
+  expected_factual_correctness: must state that total mechanical energy is conserved in the absence of friction, and the pendulum does not create or destroy energy at turning points
+  expected_readability: grade 9-10 vocabulary, avoids the word "vector" and all energy formulas, no more than three sentences
+  expected_uncertainty_framing: notes that real pendulums lose energy to air and friction over time, and advises checking against the simulation
+
+- id: mechanics-010
+  misconception_id: mechanics.freefall.acceleration_independence
+  sim: mechanics
+  grade_band: 9-10
+  question_text: A student says that if you drop a heavy ball and a light ball in a vacuum, the heavy one will hit the ground first. Are they correct?
+  expected_factual_correctness: must state that in a vacuum both balls fall with the same acceleration due to gravity, so they land at the same time regardless of mass
+  expected_readability: grade 9-10 phrasing, explains "acceleration due to gravity" in one clause, no more than two sentences
+  expected_uncertainty_framing: explicitly notes that the answer assumes no air resistance, and advises comparing against the simulation
+
+- id: mechanics-011
+  misconception_id: mechanics.freefall.acceleration_independence
+  sim: mechanics
+  grade_band: 9-10
+  question_text: A student argues that in the absence of air a heavier object still falls faster because gravity pulls it harder. Is that right?
+  expected_factual_correctness: must state that gravitational acceleration is independent of mass, so a heavier object experiences a larger force but accelerates the same as a lighter one
+  expected_readability: grade 9-10 vocabulary, explains why the larger force does not produce a larger acceleration in one sentence
+  expected_uncertainty_framing: notes the answer assumes a uniform gravitational field and no air resistance, and advises checking against the simulation
+
+- id: mechanics-012
+  misconception_id: mechanics.freefall.acceleration_independence
+  sim: mechanics
+  grade_band: 9-10
+  question_text: A student says the Moon has no gravity because a feather and a hammer land together there. What is the correct explanation?
+  expected_factual_correctness: must state the Moon does have gravity, but the absence of an atmosphere means there is no air resistance, so all objects fall at the same rate
+  expected_readability: grade 9-10 phrasing, explains "air resistance" in one short clause, no more than three sentences
+  expected_uncertainty_framing: notes that lunar gravity is weaker than Earth's but still acts the same way on all objects, and advises checking against the simulation
+
+- id: mechanics-013
+  misconception_id: mechanics.momentum.conservation
+  sim: mechanics
+  grade_band: 9-10
+  question_text: Two carts collide and slow down. A student concludes momentum was lost because the speed decreased. How would you correct this?
+  expected_factual_correctness: must state that momentum is a vector quantity and is conserved in a collision even when the carts slow down, because momentum depends on direction as well as speed
+  expected_readability: grade 9-10 vocabulary, defines "vector" with one plain-language example, no more than three sentences
+  expected_uncertainty_framing: notes the answer assumes no external forces like friction, and advises checking against the simulation
+
+- id: mechanics-014
+  misconception_id: mechanics.momentum.conservation
+  sim: mechanics
+  grade_band: 9-10
+  question_text: A student says that in any collision the total momentum after is always less than before because energy is lost. What is wrong with that claim?
+  expected_factual_correctness: must state that total momentum is conserved in a closed system, and what is lost in inelastic collisions is kinetic energy, not momentum
+  expected_readability: grade 9-10 phrasing, distinguishes energy from momentum in one sentence, no more than three sentences
+  expected_uncertainty_framing: notes the answer assumes no external forces, and advises checking against the simulation
+
+- id: mechanics-015
+  misconception_id: mechanics.momentum.conservation
+  sim: mechanics
+  grade_band: 9-10
+  question_text: A student believes momentum and velocity are the same quantity just with different units. Is that understanding correct?
+  expected_factual_correctness: must clarify that momentum equals mass times velocity and includes direction, while velocity alone does not include the object's mass
+  expected_readability: grade 9-10 vocabulary, no more than two sentences, states the relationship in words before any symbol
+  expected_uncertainty_framing: notes that both are vectors but measure different things, and advises checking against the simulation
+
+- id: mechanics-016
+  misconception_id: mechanics.momentum.conservation
+  sim: mechanics
+  grade_band: 9-10
+  question_text: A student says the total momentum after a collision is always smaller because energy is destroyed in the crash. How would you correct this?
+  expected_factual_correctness: must state that momentum is conserved in a closed system and only kinetic energy may decrease in inelastic collisions, not momentum
+  expected_readability: grade 9-10 phrasing, distinguishes momentum and kinetic energy in one sentence, no more than three sentences
+  expected_uncertainty_framing: notes the answer assumes no external impulse, and advises checking against the simulation
+
+- id: mechanics-017
+  misconception_id: mechanics.forces.equilibrium
+  sim: mechanics
+  grade_band: 9-10
+  question_text: A student says that if the net force on an object is zero, the object must be at rest. Is that correct?
+  expected_factual_correctness: must state that zero net force means zero acceleration, so an object can be moving with constant velocity and still have zero net force
+  expected_readability: grade 9-10 vocabulary, no more than two sentences, states the point without using the word "inertia"
+  expected_uncertainty_framing: notes the answer assumes the object is described in an inertial frame, and advises checking against the simulation
+
+- id: mechanics-018
+  misconception_id: mechanics.forces.equilibrium
+  sim: mechanics
+  grade_band: 9-10
+  question_text: A book rests on a table. A student says the forces on the book must be unbalanced because gravity is pulling it down. Are they right?
+  expected_factual_correctness: must state that the normal force from the table balances gravity, so the net force on the book is zero and the forces are balanced
+  expected_readability: grade 9-10 phrasing, explains "normal force" in one short clause, no more than three sentences
+  expected_uncertainty_framing: notes the answer assumes the table is horizontal and rigid, and advises checking against the simulation
+
+- id: mechanics-019
+  misconception_id: mechanics.forces.equilibrium
+  sim: mechanics
+  grade_band: 9-10
+  question_text: A student says an airplane flying at constant speed and altitude has no forces acting on it because it is not accelerating. Is that right?
+  expected_factual_correctness: must state that constant velocity means zero net force, while individual forces such as weight and lift still act and cancel each other
+  expected_readability: grade 9-10 vocabulary, no more than three sentences, does not require free-body diagrams
+  expected_uncertainty_framing: notes the answer assumes straight and level flight, and advises checking against the simulation
+
+- id: mechanics-020
+  misconception_id: mechanics.forces.equilibrium
+  sim: mechanics
+  grade_band: 9-10
+  question_text: A student believes zero acceleration implies zero net force only when the object is stationary. What is the correct statement?
+  expected_factual_correctness: must state that zero acceleration implies zero net force whether the object is at rest or moving with constant velocity
+  expected_readability: grade 9-10 phrasing, no more than two sentences, uses the word "constant velocity" with a plain-language gloss
+  expected_uncertainty_framing: notes the answer assumes an inertial reference frame, and advises checking against the simulation
+
+# ============================ WAVES / OPTICS ============================
+- id: waves_optics-001
+  misconception_id: waves_optics.refraction.snells_law
+  sim: waves_optics
+  grade_band: 9-10
+  question_text: A ray of light enters water from air at an angle. Does it bend toward or away from the normal?
+  expected_factual_correctness: must state that the ray bends toward the normal because the refractive index of water is greater than that of air
+  expected_readability: defines "normal" inline the first time it is used; no derivation, no Snell's law equation
+  expected_uncertainty_framing: notes this is the ideal case for a flat surface and advises checking against the simulation
+
+- id: waves_optics-002
+  misconception_id: waves_optics.lens.image_formation
+  sim: waves_optics
+  grade_band: 9-10
+  question_text: Where does a converging lens form an image when the object is between the focal point and the lens?
+  expected_factual_correctness: must state the image is virtual, on the same side as the object, larger than the object, and upright
+  expected_readability: grade 9-10 phrasing, explains "virtual image" in one clause without a diagram reference
+  expected_uncertainty_framing: advises checking against the simulation, and notes that real lenses have aberrations the ideal case ignores
+
+- id: waves_optics-003
+  misconception_id: waves_optics.refraction.snells_law
+  sim: waves_optics
+  grade_band: 9-10
+  question_text: A student says light entering glass from air will speed up because glass transmits light well. Is that correct?
+  expected_factual_correctness: must state that light entering a denser medium slows down and bends toward the normal, not away
+  expected_readability: grade 9-10 vocabulary, no more than two sentences, uses the word "denser" with a plain-language gloss
+  expected_uncertainty_framing: notes the answer assumes the glass surface is flat, and advises checking against the simulation
+
+- id: waves_optics-004
+  misconception_id: waves_optics.refraction.snells_law
+  sim: waves_optics
+  grade_band: 9-10
+  question_text: A student claims that a ray of light entering a denser medium bends away from the normal because the medium is harder for light to push through. Are they right?
+  expected_factual_correctness: must state that light entering a denser medium bends toward the normal because its speed decreases, not away because the medium is harder
+  expected_readability: grade 9-10 phrasing, defines "normal" inline, no more than three sentences
+  expected_uncertainty_framing: notes the answer assumes a single flat interface between two media, and advises checking against the simulation
+
+- id: waves_optics-005
+  misconception_id: waves_optics.refraction.snells_law
+  sim: waves_optics
+  grade_band: 9-10
+  question_text: A student says the bend direction of light depends only on the light's frequency, not on the medium it enters. Is that right?
+  expected_factual_correctness: must state that the bend direction depends on the ratio of refractive indices between the two media, not on the light's frequency alone
+  expected_readability: grade 9-10 vocabulary, no more than three sentences, defines "refractive index" in one short clause
+  expected_uncertainty_framing: notes the answer assumes a flat interface and that dispersion is ignored, and advises checking against the simulation
+
+- id: waves_optics-006
+  misconception_id: waves_optics.lens.image_formation
+  sim: waves_optics
+  grade_band: 9-10
+  question_text: A student says a magnifying glass always produces a real image because it is a converging lens. Are they correct?
+  expected_factual_correctness: must state that a converging lens produces a virtual image when the object is closer than one focal length, and a real image when farther
+  expected_readability: grade 9-10 phrasing, defines "virtual" and "real" in one short clause each, no more than three sentences
+  expected_uncertainty_framing: notes the answer assumes a thin lens and a distant observer, and advises checking against the simulation
+
+- id: waves_optics-007
+  misconception_id: waves_optics.lens.image_formation
+  sim: waves_optics
+  grade_band: 9-10
+  question_text: A student says a converging lens always produces an inverted image. Is that right?
+  expected_factual_correctness: must state that the image type and orientation depend on the object distance relative to the focal length, not on the lens type alone
+  expected_readability: grade 9-10 vocabulary, no more than three sentences, uses "focal length" with a plain-language gloss
+  expected_uncertainty_framing: notes the answer assumes a thin lens and that the object is on the lens axis, and advises checking against the simulation
+
+- id: waves_optics-008
+  misconception_id: waves_optics.lens.image_formation
+  sim: waves_optics
+  grade_band: 9-10
+  question_text: A student looking through a magnifying glass says the image is on the opposite side of the lens from the object, so it must be a real image. What is the correct description?
+  expected_factual_correctness: must state that when the object is closer than the focal length, the image is virtual, upright, larger, and on the same side of the lens as the object
+  expected_readability: grade 9-10 phrasing, explains "virtual image" in one clause and does not require a ray diagram
+  expected_uncertainty_framing: notes the answer assumes a thin lens, and advises the student to compare against the simulation
+
+- id: waves_optics-009
+  misconception_id: waves_optics.waves.frequency_amplitude
+  sim: waves_optics
+  grade_band: 9-10
+  question_text: A student says a louder sound must have a higher pitch because more energy means faster vibrations. Are they right?
+  expected_factual_correctness: must state that loudness depends on amplitude while pitch depends on frequency, and that increasing energy does not raise the pitch
+  expected_readability: grade 9-10 vocabulary, no more than two sentences, defines "amplitude" and "frequency" in one short clause each
+  expected_uncertainty_framing: notes that in real media loudness may be perceived differently, and advises checking against the simulation
+
+- id: waves_optics-010
+  misconception_id: waves_optics.waves.frequency_amplitude
+  sim: waves_optics
+  grade_band: 9-10
+  question_text: A student says the amplitude of a wave and its frequency are the same thing measured in different units. Is that correct?
+  expected_factual_correctness: must state that amplitude is the maximum displacement from equilibrium while frequency is cycles per unit time, and they are independent properties
+  expected_readability: grade 9-10 phrasing, no more than two sentences, defines both terms in plain language without formulas
+  expected_uncertainty_framing: notes the answer assumes a periodic wave, and advises checking against the simulation
+
+- id: waves_optics-011
+  misconception_id: waves_optics.waves.frequency_amplitude
+  sim: waves_optics
+  grade_band: 9-10
+  question_text: A student believes a wave with larger amplitude must travel faster because it carries more energy. Is that right?
+  expected_factual_correctness: must state that for a given medium the wave speed is set by the medium, and changing amplitude does not change the wave speed
+  expected_readability: grade 9-10 vocabulary, no more than three sentences, uses "medium" with a plain-language gloss
+  expected_uncertainty_framing: notes the answer assumes a linear medium, and advises checking against the simulation
+
+- id: waves_optics-012
+  misconception_id: waves_optics.waves.frequency_amplitude
+  sim: waves_optics
+  grade_band: 9-10
+  question_text: A student says that when a sound gets louder, the frequency goes up and the amplitude stays the same. What is the correct relationship?
+  expected_factual_correctness: must state that when a sound gets louder the amplitude increases and the frequency stays the same, so pitch does not change
+  expected_readability: grade 9-10 phrasing, no more than two sentences, gives one concrete example such as a guitar string plucked harder
+  expected_uncertainty_framing: notes the answer assumes the pitch is unchanged, and advises checking against the simulation
+
+- id: waves_optics-013
+  misconception_id: waves_optics.colors.spectrum
+  sim: waves_optics
+  grade_band: 9-10
+  question_text: A student says white light is a single color with no internal structure because when you look at it you see only white. Is that correct?
+  expected_factual_correctness: must state that white light is a mixture of many wavelengths, and a prism separates those wavelengths rather than adding color
+  expected_readability: grade 9-10 vocabulary, no more than three sentences, uses "wavelength" with a plain-language gloss
+  expected_uncertainty_framing: notes the answer assumes sunlight or a similar white source, and advises checking against the simulation
+
+- id: waves_optics-014
+  misconception_id: waves_optics.colors.spectrum
+  sim: waves_optics
+  grade_band: 9-10
+  question_text: A student believes a prism adds color to white light rather than separating colors that are already present. Are they right?
+  expected_factual_correctness: must state that a prism separates wavelengths already present in white light through dispersion, and does not create new colors
+  expected_readability: grade 9-10 phrasing, defines "dispersion" in one short clause, no more than two sentences
+  expected_uncertainty_framing: notes the answer assumes a glass prism and white light, and advises checking against the simulation
+
+- id: waves_optics-015
+  misconception_id: waves_optics.colors.spectrum
+  sim: waves_optics
+  grade_band: 9-10
+  question_text: A student says white and black are the only colors that contain all other colors. Is that correct?
+  expected_factual_correctness: must state that white light contains a mixture of all visible wavelengths while black is the absence of visible light, not a color that contains others
+  expected_readability: grade 9-10 vocabulary, no more than three sentences, defines "visible wavelengths" with a plain-language gloss
+  expected_uncertainty_framing: notes the answer refers to visible light only, and advises checking against the simulation
+
+- id: waves_optics-016
+  misconception_id: waves_optics.colors.spectrum
+  sim: waves_optics
+  grade_band: 9-10
+  question_text: A student thinks a rainbow is created by the sky reflecting white light. What is the actual process?
+  expected_factual_correctness: must state that a rainbow forms when sunlight is refracted, internally reflected, and dispersed by water droplets, not by reflection off the sky
+  expected_readability: grade 9-10 phrasing, no more than three sentences, defines "dispersion" in one short clause
+  expected_uncertainty_framing: notes the answer assumes spherical water droplets and a bright sun behind the observer, and advises checking against the simulation
+
+- id: waves_optics-017
+  misconception_id: waves_optics.mirrors.reflection
+  sim: waves_optics
+  grade_band: 9-10
+  question_text: A student says the angle of incidence is measured from the mirror surface rather than from the normal. Is that correct?
+  expected_factual_correctness: must state that the angle of incidence is measured between the incoming ray and the normal, not between the incoming ray and the mirror surface
+  expected_readability: grade 9-10 vocabulary, defines "normal" inline the first time it is used, no more than two sentences
+  expected_uncertainty_framing: notes the answer assumes a flat mirror, and advises checking against the simulation
+
+- id: waves_optics-018
+  misconception_id: waves_optics.mirrors.reflection
+  sim: waves_optics
+  grade_band: 9-10
+  question_text: A student claims a mirror flips light left-to-right because it reverses the image. Is that right?
+  expected_factual_correctness: must state that a mirror reverses front-to-back relative to the mirror, and the apparent left-right effect is a perception from the observer's orientation
+  expected_readability: grade 9-10 phrasing, no more than three sentences, gives one concrete example like text reflected in a mirror
+  expected_uncertainty_framing: notes the answer assumes a flat mirror and a single observer, and advises checking against the simulation
+
+- id: waves_optics-019
+  misconception_id: waves_optics.mirrors.reflection
+  sim: waves_optics
+  grade_band: 9-10
+  question_text: A student says a mirror can only reflect light straight back when the incoming ray hits it at exactly 90 degrees. Is that correct?
+  expected_factual_correctness: must state that the law of reflection holds at any angle of incidence, and light reflects off at the same angle regardless of whether the ray hits at 90 degrees
+  expected_readability: grade 9-10 vocabulary, no more than three sentences, states the law of reflection in words without symbol notation
+  expected_uncertainty_framing: notes the answer assumes a flat smooth mirror, and advises checking against the simulation
+
+- id: waves_optics-020
+  misconception_id: waves_optics.mirrors.reflection
+  sim: waves_optics
+  grade_band: 9-10
+  question_text: A student thinks a flat mirror reverses an image top-to-bottom but keeps it the same left-to-right. Are they correct?
+  expected_factual_correctness: must state that a flat mirror preserves up-down and left-right relative to the observer, and the flip perceived is front-to-back across the mirror plane
+  expected_readability: grade 9-10 phrasing, no more than three sentences, uses "front-to-back" with a plain-language gloss
+  expected_uncertainty_framing: notes the answer assumes the observer is facing the mirror, and advises checking against the simulation
+
+# ============================ ELECTRICITY ============================
+- id: electricity-001
+  misconception_id: electricity.circuits.ohms_law
+  sim: electricity
+  grade_band: 9-10
+  question_text: If you double the voltage across a resistor and the resistance stays the same, what happens to the current?
+  expected_factual_correctness: must state the current doubles, and may cite V equals I R as the reason
+  expected_readability: states the formula in words first, then optionally as V = I R; no more than three sentences
+  expected_uncertainty_framing: advises checking against the simulation, and notes that real resistors heat up and resistance may change
+
+- id: electricity-002
+  misconception_id: electricity.circuits.series_vs_parallel
+  sim: electricity
+  grade_band: 9-10
+  question_text: In a parallel circuit, if one bulb burns out, why do the others stay lit?
+  expected_factual_correctness: must state each bulb has its own path back to the source, so current can still flow through the others
+  expected_readability: uses "path" and "source" rather than "node" or "branch"; no schematic-diagram dependency
+  expected_uncertainty_framing: notes this assumes the source can supply the total current, and advises checking against the simulation
+
+- id: electricity-003
+  misconception_id: electricity.circuits.ohms_law
+  sim: electricity
+  grade_band: 9-10
+  question_text: A student says that doubling the voltage across a resistor leaves the current unchanged because the resistor limits current. Is that right?
+  expected_factual_correctness: must state that current equals voltage divided by resistance, so doubling voltage while resistance stays constant doubles the current
+  expected_readability: grade 9-10 vocabulary, no more than two sentences, states the relationship in words before any symbol
+  expected_uncertainty_framing: notes the answer assumes the resistor behaves as an ideal resistor, and advises checking against the simulation
+
+- id: electricity-004
+  misconception_id: electricity.circuits.ohms_law
+  sim: electricity
+  grade_band: 9-10
+  question_text: A student says if you increase resistance in a circuit the current increases because the circuit resists less efficiently. Are they correct?
+  expected_factual_correctness: must state that with voltage held constant, increasing resistance decreases current, because current equals voltage divided by resistance
+  expected_readability: grade 9-10 phrasing, no more than three sentences, uses one concrete example with simple numbers
+  expected_uncertainty_framing: notes the answer assumes the voltage source is unchanged, and advises checking against the simulation
+
+- id: electricity-005
+  misconception_id: electricity.circuits.ohms_law
+  sim: electricity
+  grade_band: 9-10
+  question_text: A student says that current and voltage are the same thing measured in different units. Is that correct?
+  expected_factual_correctness: must state that voltage is the potential difference that drives charge while current is the rate of charge flow, and they are different quantities
+  expected_readability: grade 9-10 vocabulary, no more than three sentences, uses an everyday analogy such as water pressure versus flow
+  expected_uncertainty_framing: notes the answer assumes a steady-state circuit, and advises checking against the simulation
+
+- id: electricity-006
+  misconception_id: electricity.circuits.series_vs_parallel
+  sim: electricity
+  grade_band: 9-10
+  question_text: A student says bulbs in series and bulbs in parallel look the same in brightness because the same current flows through both arrangements. Are they right?
+  expected_factual_correctness: must state that bulbs in series carry the same current and share the voltage, while bulbs in parallel share the current and each sees the full voltage, producing different brightness
+  expected_readability: grade 9-10 phrasing, no more than three sentences, defines "share the voltage" in one short clause
+  expected_uncertainty_framing: notes the answer assumes identical bulbs and an ideal source, and advises checking against the simulation
+
+- id: electricity-007
+  misconception_id: electricity.circuits.series_vs_parallel
+  sim: electricity
+  grade_band: 9-10
+  question_text: A student says adding a second bulb in series makes each bulb brighter because there is more load on the circuit. Is that correct?
+  expected_factual_correctness: must state that adding a bulb in series increases total resistance, which decreases total current and makes each bulb dimmer
+  expected_readability: grade 9-10 vocabulary, no more than three sentences, explains "load" with a plain-language gloss
+  expected_uncertainty_framing: notes the answer assumes the source voltage is fixed, and advises checking against the simulation
+
+- id: electricity-008
+  misconception_id: electricity.circuits.series_vs_parallel
+  sim: electricity
+  grade_band: 9-10
+  question_text: A student says that adding a bulb in parallel to an existing bulb makes the existing bulb dimmer because the current is shared. Are they right?
+  expected_factual_correctness: must state that adding a bulb in parallel keeps the existing bulb's voltage the same, so it stays at the same brightness, while total current from the source increases
+  expected_readability: grade 9-10 phrasing, no more than three sentences, uses one concrete example with two bulbs
+  expected_uncertainty_framing: notes the answer assumes the source can supply the extra current, and advises checking against the simulation
+
+- id: electricity-009
+  misconception_id: electricity.circuits.power_dissipation
+  sim: electricity
+  grade_band: 9-10
+  question_text: A student says doubling the current through a resistor doubles the power dissipated. Is that correct?
+  expected_factual_correctness: must state that power dissipated in a resistor equals current squared times resistance, so doubling the current quadruples the power, not doubles it
+  expected_readability: grade 9-10 vocabulary, no more than three sentences, states the relationship in words before any symbol
+  expected_uncertainty_framing: notes the answer assumes the resistance stays constant, and advises checking against the simulation
+
+- id: electricity-010
+  misconception_id: electricity.circuits.power_dissipation
+  sim: electricity
+  grade_band: 9-10
+  question_text: A student says power and energy are the same thing measured in the same units. Is that correct?
+  expected_factual_correctness: must state that power is energy per unit time measured in watts, while energy is measured in joules, and a watt equals one joule per second
+  expected_readability: grade 9-10 phrasing, no more than three sentences, uses a plain-language example with a 100-watt bulb
+  expected_uncertainty_framing: notes the answer refers to electrical quantities, and advises checking against the simulation
+
+- id: electricity-011
+  misconception_id: electricity.circuits.power_dissipation
+  sim: electricity
+  grade_band: 9-10
+  question_text: A student says a resistor with higher resistance always dissipates more power than one with lower resistance. Is that right?
+  expected_factual_correctness: must state that power depends on current squared times resistance, so higher resistance means more power only if the current is the same, and lower resistance dissipates more at higher current
+  expected_readability: grade 9-10 vocabulary, no more than three sentences, uses one concrete example comparing two cases
+  expected_uncertainty_framing: notes the answer distinguishes fixed-current from fixed-voltage situations, and advises checking against the simulation
+
+- id: electricity-012
+  misconception_id: electricity.circuits.power_dissipation
+  sim: electricity
+  grade_band: 9-10
+  question_text: A student says a 100-watt bulb uses 100 joules of energy only if it is on for exactly one second. Is that the right way to think about it?
+  expected_factual_correctness: must state that a 100-watt bulb uses 100 joules per second while it is on, and this rate is continuous rather than a one-second event
+  expected_readability: grade 9-10 phrasing, no more than three sentences, uses the phrase "per second" with a plain-language gloss
+  expected_uncertainty_framing: notes the answer assumes the bulb's power rating is constant, and advises checking against the simulation
+
+- id: electricity-013
+  misconception_id: electricity.magnetism.electromagnetic_induction
+  sim: electricity
+  grade_band: 9-10
+  question_text: A student says a coil of wire near a magnet always has current induced in it because the magnetic field is always working on the wire. Is that correct?
+  expected_factual_correctness: must state that current is induced only when the magnetic flux through the coil changes, not merely because a magnetic field is present
+  expected_readability: grade 9-10 vocabulary, no more than three sentences, defines "flux" with a plain-language gloss
+  expected_uncertainty_framing: notes the answer assumes a closed coil circuit, and advises checking against the simulation
+
+- id: electricity-014
+  misconception_id: electricity.magnetism.electromagnetic_induction
+  sim: electricity
+  grade_band: 9-10
+  question_text: A student says a stronger magnetic field always produces more induced current, regardless of whether the field is changing. Are they right?
+  expected_factual_correctness: must state that induced current depends on the rate of change of magnetic flux, not only on the field's strength, so a strong constant field induces no current
+  expected_readability: grade 9-10 phrasing, no more than three sentences, defines "rate of change" with a plain-language gloss
+  expected_uncertainty_framing: notes the answer assumes a closed coil circuit, and advises checking against the simulation
+
+- id: electricity-015
+  misconception_id: electricity.magnetism.electromagnetic_induction
+  sim: electricity
+  grade_band: 9-10
+  question_text: A student says you can induce current in a coil by holding a magnet still next to it. Is that correct?
+  expected_factual_correctness: must state that holding a magnet still next to a coil induces no current because the magnetic flux is not changing
+  expected_readability: grade 9-10 vocabulary, no more than two sentences, defines "magnetic flux" with a plain-language gloss
+  expected_uncertainty_framing: notes the answer assumes a closed coil circuit and an ideal magnet, and advises checking against the simulation
+
+- id: electricity-016
+  misconception_id: electricity.magnetism.electromagnetic_induction
+  sim: electricity
+  grade_band: 9-10
+  question_text: A student says moving a magnet past a coil induces current because the magnet pushes electrons along. What is the actual mechanism?
+  expected_factual_correctness: must state that a changing magnetic flux induces an electromotive force that drives electrons through the coil, and moving the magnet is what changes the flux
+  expected_readability: grade 9-10 phrasing, defines "electromotive force" with a plain-language gloss, no more than three sentences
+  expected_uncertainty_framing: notes the answer assumes a closed coil circuit, and advises checking against the simulation
+
+- id: electricity-017
+  misconception_id: electricity.static.charge_distribution
+  sim: electricity
+  grade_band: 9-10
+  question_text: A student says charge on a metal object spreads evenly regardless of the object's shape. Is that correct?
+  expected_factual_correctness: must state that charge on a conductor redistributes based on the shape of the conductor, and accumulates most at sharply curved or pointed regions
+  expected_readability: grade 9-10 vocabulary, no more than three sentences, uses the phrase "pointed regions" with a plain-language gloss
+  expected_uncertainty_framing: notes the answer assumes a solid conducting object, and advises checking against the simulation
+
+- id: electricity-018
+  misconception_id: electricity.static.charge_distribution
+  sim: electricity
+  grade_band: 9-10
+  question_text: A student says bringing a charged rod near a metal object causes the charge to redistribute on the object. Is that correct?
+  expected_factual_correctness: must state that charge redistributes on a conductor when an external charged object is nearby, causing a separation of charge on the surface
+  expected_readability: grade 9-10 phrasing, no more than three sentences, defines "separation of charge" with a plain-language gloss
+  expected_uncertainty_framing: notes the answer assumes an isolated conductor, and advises checking against the simulation
+
+- id: electricity-019
+  misconception_id: electricity.static.charge_distribution
+  sim: electricity
+  grade_band: 9-10
+  question_text: A student says excess charge on a hollow metal sphere collects on the inside surface. Is that correct?
+  expected_factual_correctness: must state that excess charge on a hollow conductor resides on the outer surface, not the inner surface
+  expected_readability: grade 9-10 vocabulary, no more than two sentences, defines "hollow conductor" with a plain-language gloss
+  expected_uncertainty_framing: notes the answer assumes no charge is enclosed in the cavity, and advises checking against the simulation
+
+- id: electricity-020
+  misconception_id: electricity.static.charge_distribution
+  sim: electricity
+  grade_band: 9-10
+  question_text: A student believes static charge is used up when it discharges through a spark. What actually happens to the charge?
+  expected_factual_correctness: must state that static charge is not consumed in a spark; electrons move from one object to another and the total charge is conserved
+  expected_readability: grade 9-10 phrasing, no more than three sentences, uses "conserved" with a plain-language gloss
+  expected_uncertainty_framing: notes the answer assumes the two objects together are isolated, and advises checking against the simulation

@@ -1,0 +1,39 @@
+# Taxonomy stub authored by P2.04.
+# Rule for P5.01: every id below must appear in the final taxonomy, verbatim.
+# P5.01 may add ids; it may not remove or rename these.
+# Rule for P5.02: every id below must have at least one canonical hint.
+version: 1
+sims:
+  mechanics:
+    - id: mechanics.pendulum.velocity_sign
+      description: student confuses the sign of velocity with the direction of position change
+    - id: mechanics.pendulum.energy_transfer
+      description: student believes kinetic and potential energy are independent rather than interchangeable
+    - id: mechanics.freefall.acceleration_independence
+      description: student believes heavier objects fall faster in a vacuum
+    - id: mechanics.momentum.conservation
+      description: student believes momentum is not conserved when objects collide and slow down
+    - id: mechanics.forces.equilibrium
+      description: student believes zero net force means the object must be at rest
+  waves_optics:
+    - id: waves_optics.refraction.snells_law
+      description: student cannot predict the bend direction on entering a denser medium
+    - id: waves_optics.lens.image_formation
+      description: student believes a converging lens always produces a real image
+    - id: waves_optics.waves.frequency_amplitude
+      description: student confuses frequency with amplitude as the determinant of pitch
+    - id: waves_optics.colors.spectrum
+      description: student believes white light is a single wavelength rather than a mixture
+    - id: waves_optics.mirrors.reflection
+      description: student believes the angle of incidence equals the angle to the mirror surface
+  electricity:
+    - id: electricity.circuits.ohms_law
+      description: student believes current is independent of resistance when voltage changes
+    - id: electricity.circuits.series_vs_parallel
+      description: student believes bulbs in series behave the same as bulbs in parallel
+    - id: electricity.circuits.power_dissipation
+      description: student confuses power with energy and believes doubling current doubles power
+    - id: electricity.magnetism.electromagnetic_induction
+      description: student believes a magnetic field alone induces current without relative motion
+    - id: electricity.static.charge_distribution
+      description: student believes charge is evenly distributed regardless of conductor shape
