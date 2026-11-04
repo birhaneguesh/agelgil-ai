@@ -1,0 +1,11 @@
+{
+  "type": "object",
+  "properties": {
+    "hint": {
+      "type": "string",
+      "description": "The tutor's hint. Two to three sentences, under 60 words, grade 9-10 English, ending with the mandatory uncertainty sentence."
+    }
+  },
+  "required": ["hint"],
+  "additionalProperties": false
+}
