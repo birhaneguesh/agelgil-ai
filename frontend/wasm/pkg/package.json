@@ -1,0 +1,15 @@
+{
+  "name": "agelgil-wasm",
+  "type": "module",
+  "version": "0.0.0",
+  "files": [
+    "agelgil_wasm_bg.wasm",
+    "agelgil_wasm.js",
+    "agelgil_wasm.d.ts"
+  ],
+  "main": "agelgil_wasm.js",
+  "types": "agelgil_wasm.d.ts",
+  "sideEffects": [
+    "./snippets/*"
+  ]
+}
