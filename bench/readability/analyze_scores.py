@@ -11,11 +11,11 @@ Writes:
   bench/readability/verdict.json: machine-readable verdict
 
 Teacher sheet format (markdown table):
-  | # | item_id | misconception_id | ... | grammar ok? | factual | readability | uncertainty | comment |
-  Cells "factual", "readability", "uncertainty" contain 1-5, or "-" for grammar-failed items.
+  | # | item_id | misconception_id | question | hint | grammar ok? | factual | readability | uncertainty | comment |
+  Score cells contain 1-5 (for grammar=Y) or "-" (for grammar=N, pre-filled by Step 7).
 
 Verdict logic (per P2.05 locked decisions):
-  grammar-fail item contributes (0,0,0).
+  grammar=N item contributes (0,0,0).
   item passes if all three >= 3.
   model passes for teacher if:
     teacher_mean[dim] >= 3.5 for all dims
@@ -49,7 +49,6 @@ ROW = re.compile(
 
 
 def load_grammar():
-    """item_id -> model -> {grammar_ok}."""
     d = {}
     with open(RAW, encoding="utf-8") as f:
         for line in f:
@@ -59,7 +58,6 @@ def load_grammar():
 
 
 def parse_sheet(path, model_tag):
-    """Return item_id -> (factual, readability, uncertainty) or (0,0,0) for grammar fails."""
     text = open(path, encoding="utf-8").read()
     scores = {}
     for m in ROW.finditer(text):
@@ -111,7 +109,6 @@ def evaluate():
                 "pass_rate": pass_rate,
             }
 
-        # Disagreement per dimension
         dims = ["factual", "readability", "uncertainty"]
         disagreements = {}
         for di, dim in enumerate(dims):
@@ -121,7 +118,6 @@ def evaluate():
             big = sum(1 for i in ids if abs(a[i][di] - b[i][di]) >= 2)
             disagreements[dim] = big / len(ids) if ids else 0.0
 
-        # Pass condition
         a_means = per_teacher["teacher-A"]["means"]
         b_means = per_teacher["teacher-B"]["means"]
         a_pr = per_teacher["teacher-A"]["pass_rate"]
@@ -130,7 +126,6 @@ def evaluate():
         b_ok = all(m >= 3.5 for m in b_means) and b_pr >= 0.75
         model_pass = a_ok and b_ok
 
-        # Grammar failure rate from raw.jsonl
         n_items = len(grammar)
         grammar_fails = sum(
             1 for item_scores in grammar.values()
@@ -175,15 +170,17 @@ def report(results):
             m = r[t]["means"]
             print(f"  {t}: mean factual={m[0]:.2f} read={m[1]:.2f} unc={m[2]:.2f} "
                   f"pass_rate={r[t]['pass_rate']:.1%}")
-        print(f"  disagreement: " + ", ".join(
+        print("  disagreement: " + ", ".join(
             f"{d}={r:.1%}" for d, r in r["disagreement"].items()))
         print(f"  grammar_fail_rate: {r['grammar_fail_rate']:.1%}")
 
-    # Overall verdict
     verdicts = {s: r["verdict"] for s, r in results.items()}
     print("\n== Overall ==")
     if any(v == "INCONCLUSIVE" for v in verdicts.values()):
-        print("INCONCLUSIVE — third-teacher re-score required for the dimensions listed above")
+        passed = [s for s, v in verdicts.items() if v == "PASS"]
+        inconc = [s for s, v in verdicts.items() if v == "INCONCLUSIVE"]
+        print(f"INCONCLUSIVE — third-teacher re-score required for {', '.join(inconc)}. "
+              f"Passing model(s): {', '.join(passed) or 'none'}.")
     elif verdicts.get("qwen") == "PASS" and verdicts.get("tinyllama") == "PASS":
         print("PASS — both models pass; P2.06 selects by readability mean")
     elif verdicts.get("qwen") == "PASS":

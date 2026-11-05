@@ -18,7 +18,7 @@ will run.
 
 Usage:
     python bench/readability/harness.py            # full run (120 calls)
-    python bench/readability/harness.py --limit 2  # smoke (2 calls per model)
+    python bench/readability/harness.py --limit 2  # smoke (2 items × 2 models)
 """
 import argparse
 import json
@@ -84,14 +84,15 @@ def call_ollama(model, system, user, schema):
         method="POST",
     )
     t0 = time.perf_counter()
-    with urllib.request.urlopen(req, timeout=180) as r:
+    # 120 s per call: generous for a 200-token generation on an 8 GB host; short enough
+    # that a hung backend aborts on the first call (the try/except below calls sys.exit).
+    with urllib.request.urlopen(req, timeout=120) as r:
         resp = json.loads(r.read().decode("utf-8"))
     latency_ms = int((time.perf_counter() - t0) * 1000)
     return resp, latency_ms
 
 
 def parse_hint(resp):
-    """Return (hint, grammar_ok, tag_ended). Empty hint if grammar failed."""
     raw = resp.get("response", "")
     try:
         parsed = json.loads(raw)

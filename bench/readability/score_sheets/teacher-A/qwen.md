@@ -1,6 +1,6 @@
 # Readability score sheet — qwen — teacher-A
 
-Use `docs/readability-rubric.md`. Score each item 1–5 on the three dimensions. An item passes only if all three are ≥ 3. If `grammar ok?` is N, leave the three score cells empty (the analysis assigns 0/0/0).
+Use `docs/readability-rubric.md`. Score each item 1–5 on the three dimensions. An item passes only if all three are ≥ 3. Rows with `grammar ok?` = N are pre-filled with `-` in the three score cells; do not change them.
 
 Model: `qwen2.5:0.5b-instruct-q4_K_M`. Total items: 60. Do not consult the other teacher's sheet.
 

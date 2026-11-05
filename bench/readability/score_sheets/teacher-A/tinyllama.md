@@ -1,6 +1,6 @@
 # Readability score sheet — tinyllama — teacher-A
 
-Use `docs/readability-rubric.md`. Score each item 1–5 on the three dimensions. An item passes only if all three are ≥ 3. If `grammar ok?` is N, leave the three score cells empty (the analysis assigns 0/0/0).
+Use `docs/readability-rubric.md`. Score each item 1–5 on the three dimensions. An item passes only if all three are ≥ 3. Rows with `grammar ok?` = N are pre-filled with `-` in the three score cells; do not change them.
 
 Model: `tinyllama:1.1b-chat-v1-q4_K_M`. Total items: 60. Do not consult the other teacher's sheet.
 
@@ -61,7 +61,7 @@ Model: `tinyllama:1.1b-chat-v1-q4_K_M`. Total items: 60. Do not consult the othe
 | 53 | waves_optics-013 | waves_optics.colors.spectrum | A student says white light is a single color with no internal structure because when you look at it you see only white. Is that correct? | A statement about color is incorrect. The student's statement that white light is a single color without internal structure is not accurate. | Y | | | | |
 | 54 | waves_optics-014 | waves_optics.colors.spectrum | A student believes a prism adds color to white light rather than separating colors that are already present. Are they right? | This is a hint for the student's question below, ending with the exact sentence as the one on its own line: A prism adds color to white light rather than separating colors that are already present. Are they right? | Y | | | | |
 | 55 | waves_optics-015 | waves_optics.colors.spectrum | A student says white and black are the only colors that contain all other colors. Is that correct? | A true statement for this question is 'A color that contains all other colors is necessarily white or black.' That is, a color that does not have any other colors within it is necessarily white or black. | Y | | | | |
-| 56 | waves_optics-016 | waves_optics.colors.spectrum | A student thinks a rainbow is created by the sky reflecting white light. What is the actual process? | *grammar fail — do not score* | N | | | | |
+| 56 | waves_optics-016 | waves_optics.colors.spectrum | A student thinks a rainbow is created by the sky reflecting white light. What is the actual process? | *grammar fail — do not score* | N | - | - | - |
 | 57 | waves_optics-017 | waves_optics.mirrors.reflection | A student says the angle of incidence is measured from the mirror surface rather than from the normal. Is that correct? | The angle of incidence is measured from the mirror surface rather than from the normal. | Y | | | | |
 | 58 | waves_optics-018 | waves_optics.mirrors.reflection | A student claims a mirror flips light left-to-right because it reverses the image. Is that right? | This is a suggestion — check it against your simulation result. | Y | | | | |
 | 59 | waves_optics-019 | waves_optics.mirrors.reflection | A student says a mirror can only reflect light straight back when the incoming ray hits it at exactly 90 degrees. Is that correct? | A student says that a mirror can only reflect light straight back when the incoming ray hits it at exactly 90 degrees. Is that correct? Please check this against your simulation result. | Y | | | | |

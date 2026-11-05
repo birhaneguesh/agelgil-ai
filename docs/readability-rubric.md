@@ -37,11 +37,11 @@ Does the hint **defer to the student's own observation**, rather than asserting 
 ## What is **not** scored here
 
 - The literal presence of the mandatory uncertainty sentence (it is appended at runtime regardless — see `docs/model-selection.md` → "Mandatory sentence handling (runtime)").
-- Grammar and JSON validity — handled separately by the harness; an invalid output is scored as 0 on all three dimensions and flagged in the sheet's `grammar ok?` column.
+- Grammar and JSON validity — handled separately by the harness. An invalid output is scored as 0 on all three dimensions and the sheet's `grammar ok?` column shows N.
 
 ## Scoring discipline
 
 - Read the question and the hint together, once. Score on first impression, not on analysis.
 - Score each dimension independently; do not anchor on a prior row.
 - Do not discuss scores with the other teacher before recording.
-- If a hint is empty or ungrammatical, mark 0 in the grammar-ok column and do not score — the analysis script assigns 0/0/0.
+- Rows where `grammar ok?` is N have `-` already in the three score cells. **Do not change them.** The analysis assigns 0/0/0 to those rows regardless of what is written in the cells.

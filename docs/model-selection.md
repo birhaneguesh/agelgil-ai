@@ -79,5 +79,5 @@ At scoring time (P2.05), an item where the model fails to produce JSON that vali
 Scoring does **not** check for the literal mandatory sentence in the model's output — that is a runtime concern (see "Mandatory sentence handling" above). The "uncertainty framing" rubric evaluates the *content* of the hint: does it suggest checking, avoid overclaiming, and defer to the student's own observation? A hint like "Check if…" or "Try comparing…" passes the content test even if the tag is absent.
 ## Readability verdict
 
-**Overall:** PENDING — teacher session scheduled (see docs/handover-checklist.md).
+**Overall:** PENDING — teacher session scheduled (see `docs/handover-checklist.md`).
 §16 #1 and §16 #12 remain open until the verdict is recorded here.
